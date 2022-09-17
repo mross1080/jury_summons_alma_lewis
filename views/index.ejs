@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/jquery.modal.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+</head>
+<script src="/javascripts/jquery.min.js">  </script>
+<script src="/javascripts/jquery.modal.min.js">  </script>
+
+<!-- jQuery Modal -->
+<script src="/javascripts/script.js">  </script>
+<script async src="/javascripts/fp.min.js" onload="initFingerprintJS()"></script>
+
+</script>
+
+<body>
+    <div class="App">
+
+        <div class="navBar">
+            <div class="langSelect">
+                <div class="lang"></div>
+                <div class="lang"></div>
+
+            </div>
+
+            <div class="centerVertical">
+                <img id="logoImg" src="/images/iirdicon.png" alt="Exhibit Icon" width="400" height="410">
+            </div>
+        </div>
+        <div class="questionContainer fadeInContent">
+            <div class="stationHeader">
+
+                <div class=" centerVertical">
+                    <p class="questionText">Application to be a Civil Reviewer</p>
+                </div>
+
+
+            </div>
+
+            <div id="ex1" class="modal">
+              <div class="modalBody centerVertical">
+                  <p><%= modalMessage %></p>
+              </div>
+              
+          </div>
+
+          <div id="ex2" class="modal">
+            <div class="modalBody centerVertical">
+                <p>Please enter your name</p>
+                <p>Por favor entra tu nombre</p>
+            </div>
+            
+        </div>
+
+            <form id="answerForm" name="answerForm">
+                    <input class="textInput" id="zipcode" name="answerOption" type="text" placeholder='Your Name / Su Nombre'>
+            </form>
+
+            <form id="langForm" name="langForm">
+                <div class="radio">
+                    <input id="radio-2" name="answerOption" type="radio" value="en">
+                    <label for="radio-2" class="radio-label">English</label>
+                </div>
+                <div class="radio">
+                    <input id="radio-3" name="answerOption" type="radio" value="es">
+                    <label for="radio-3" class="radio-label">Español</label>
+                </div>
+            </form>
+            <div onclick="registerUser()" class="submitAnswerButton">
+                <div class="centerVertical">
+                    <p class=" optionText" onclick="registerUser()" > <%= submit %> </p>
+                </div>
+                <div class="centerVertical">
+                    <img src="/images/arrow.png" alt="Exhibit Icon" width="70" height="70">
+                </div>
+
+            </div>
+            <a id="nextStationLink" href="/archivePermission"></a>
+        </div>
+    </div>
+
+
+    </div>
+</body>
+
+</html>

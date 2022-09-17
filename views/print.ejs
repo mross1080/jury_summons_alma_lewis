@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/jquery.modal.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+</head>
+<script src="/javascripts/jquery.min.js">  </script>
+<script src="/javascripts/jquery.modal.min.js">  </script>
+
+<!-- jQuery Modal -->
+<script src="/javascripts/exhibit.js">  </script>
+<script async src="/javascripts/fp.min.js" onload="initFingerprintJS()"></script>
+
+</script>
+
+<body>
+    <div class="App">
+
+        <div class="navBar">
+            <div class="langSelect">
+                <div id="langEs" class="lang">Español</div>
+                <div id="langEn" class="lang">English</div>
+            </div>
+
+            <div class="centerVertical">
+                <img id="logoImg" src="/images/iirdicon.png" alt="Exhibit Icon" width="400" height="410">
+            </div>
+        </div>
+        <div class="questionContainer fadeInContent">
+            <div class="stationHeader">
+                <p class="enContent questionText">I <span id="nameEN">[Nombre]</span>, truly affirm that I will give a true verdict according to the evidence. </p>     
+                <p class="esContent questionText">Yo, <span id="nameES">[Nombre]</span>, afirmo que sinceramente daré un veredicto de acuerdo con la evidencia.</p>     
+
+            </div>
+            <a id="nextStationLink" href="/waitforprint"></a>
+
+            <div id="ex1" class="modal">
+                <div class="modalBody centerVertical">
+                    <p>Thank you, you may now see your results</p>
+                </div>
+            </div>
+
+            <div id="ex2" class="modal">
+                <div class="modalContent">
+                    <p id="name"></p>
+                </div>
+            </div>
+
+            <!-- <form class="enContent" id="answerFormen" name="answerForm">
+                <input class="textInput" id="zipcode" name="answerOption" type="text" placeholder="Your Zipcode:">
+            </form>
+            
+            <form class="esContent" id="answerFormes" name="answerForm">
+                <input class="textInput" id="zipcode" name="answerOption" type="text" placeholder="Your Zipcode:">
+            </form> -->
+            <div onclick="submitAnswer('print')" class="submitAnswerButton">
+                <div class="enContent centerVertical">
+                    <p class="optionText">Print </p>
+                </div>
+                <div class="esContent centerVertical">
+                    <p class=" optionText">Imprimir </p>
+                </div>
+                <div class="centerVertical">
+                    <img src="/images/arrow.png" alt="Exhibit Icon" width="70" height="70">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+</body>
+
+</html>

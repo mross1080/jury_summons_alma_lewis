@@ -1,0 +1,304 @@
+body {
+  padding: 5px;
+  font-size: 44px;
+  font-family: AGaramonPro;
+
+  display: flex;
+  justify-content: center;
+  color: white;
+  background-color: black;
+  height: 40vh;
+}
+
+
+@font-face {
+  font-family: AGaramonPro;
+  src: url(/fonts/AGaramondPro-Regular.otf);
+}
+
+@font-face {
+  font-family: RubikOne;
+  src: url(/fonts/RubikOne-Regular.ttf);
+}
+
+@font-face {
+  font-family: RubikOne;
+  src: url(/fonts/RubikOne-Regular.ttf);
+}
+
+a {
+  color: #00B7FF;
+}
+
+
+.App{
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}   
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus{
+  background: black !important;
+  color: white !important;
+
+
+}
+
+.enContent{
+}
+
+.esContent{
+  /* display: none !important; */
+
+}
+
+.textInput {
+  border: 0;
+  outline: 0;
+  font-family: RubikOne;
+  background: black !important;
+  border-top: none;
+  border-right: 2px sold white;
+  border-left: none;
+
+  border-bottom: 2px solid white;
+  width: 80vw;
+  height: 100px;
+  color: white !important;
+  font-size: 2vh;
+}
+
+
+.centerVertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.alignTop {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.questionContainer{
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+}
+.stationHeader{
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+  margin-bottom: 20px;
+  margin-top: 7vh;
+
+}
+
+.questionText{
+  font-family: RubikOne;
+  width: 90vw;
+  font-size: 3vh;
+  padding: 0px;
+  margin: 0px;
+}
+
+#answerForm{
+  font-family: AGaramonPro;
+  font-size: 2.5vh;
+}
+
+.navBar {
+  font-family: AGaramonPro;
+
+  display: flex;
+  justify-content: space-between;
+  width: 90vw;
+  margin-top: 50px;
+  padding: 0px 30px;
+  font-size: 2.4vh;
+}
+
+.langSelect{
+  width: 32vw;
+  display: flex;
+  justify-content: space-between;
+  height: 4vh;
+}
+
+.modalContent {
+  font-family: AGaramonPro;
+
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  padding: 0px 30px;
+  font-size: 3vh;
+
+
+}
+
+/* input[type='text'],
+input[type='number'],
+textarea {
+  font-size: 36px;
+} */
+
+input[type='text'],textarea {font-size:1em;}
+
+#logoImg{
+  margin-top: -40px;
+}
+/* 
+input[type="radio"]:checked+label { 
+  
+  font-weight: bold;
+  color: yellow
+} */
+
+
+.modalBody{
+  font-family: RubikOne;
+  height: 40vh;
+}
+
+
+.submitAnswerButton {
+  font-family: AGaramonPro;
+
+  height: 100px;
+  margin-top: 50px;
+  border: 2px solid white;
+  border-radius: 5px;
+  list-style-type: none;
+  padding: 19px;
+  color: white;
+  font-size: 2vh;
+  display: flex;
+justify-content: space-between;
+
+flex-direction: row;
+}
+
+.arrow{
+  font-size: 25px;
+
+}
+.optionText {
+  justify-content: start;
+  flex-shrink: 3;
+  margin-left: 20px;
+  font-size: 3vh
+}
+.iconContainer{
+  justify-content: end;
+  flex-shrink: 3;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.radio {
+  margin: 3.0rem 0rem;
+  margin-right: 0px;
+}
+.radio input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+.radio input[type="radio"] + .radio-label:before {
+  content: '';
+  background: black;
+  border-radius: 100%;
+  border: 5px solid #b4b4b4;
+  display: inline-block;
+  width: 1.0em;
+  height: 1.0em;
+  position: relative;
+  top: -0.1em;
+  margin-right: 1em;
+  vertical-align: top;
+  cursor: pointer;
+  text-align: center;
+  transition: all 250ms ease;
+}
+.radio input[type="radio"]:checked + .radio-label:before {
+  background-color: #FCEF03;
+  color :#FCEF03;
+  box-shadow: inset 0 0 0 4px #f4f4f4;
+}
+.radio input[type="radio"]:focus + .radio-label:before {
+  outline: none;
+  border-color: #FCEF03;
+  color :#FCEF03;
+
+}
+
+.radio input[type="radio"] + .radio-label:empty:before {
+  margin-right: 0;
+}
+
+
+.radio input[type="radio"]:checked+label {
+  color :#FCEF03;
+
+}
+
+#nationalitySelect {
+  font-size: 73px !important;
+}
+
+.selectOption{
+  font-size: 20px;
+}
+
+.fadeInContent {
+
+  animation: fadeIn linear 2s;
+  -webkit-animation: fadeIn linear 2s;
+  -moz-animation: fadeIn linear 2s;
+  -o-animation: fadeIn linear 2s;
+  -ms-animation: fadeIn linear 2s;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+
