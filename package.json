@@ -1,7 +1,10 @@
 {
   "name": "formserver",
   "version": "0.0.0",
+  "engines": {
+    "node": "18.x"
   "private": true,
+  
   "scripts": {
     "start": "node ./bin/www"
   },
