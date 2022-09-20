@@ -11,10 +11,9 @@ def testPrint():
     print("Connected to formatter")
 
 correct_answers = {
-    "a1" : "1",
-    "a2" : "1",
-    "a3" : "1",
-    "sugarIntake" : "4",
+    "a1" : "2",
+    "a2" : "37",
+    "a3" : "2"
 }
 
 
@@ -24,14 +23,14 @@ count =0
 answer_lookup = {
     "en": {
         "a1": {
-            "1": "Very important",
-            "2": "Somewhat important",
-            "3": "Slightly important",
-            "4": "Not important at all"
+            "1": "Yes",
+            "2": "No",
         },
         "a3": {
-            "1": "Agree",
-            "2": "Disagree"
+            "1": "How you see and identify yourself",
+            "2": "How others see and identify you",
+            "3": "Both", 
+            "4": "None of the above"
         },
         "a2": {
             "1": "Very Close",
@@ -39,38 +38,25 @@ answer_lookup = {
             "3": "Someone I know is stateless",
             "4": "I don't know anyone"
         },
-        "sugarIntake": {
-            "1": "high",
-            "2": "medium",
-            "3": "low",
-            "4": "none"
-        }
     },
     "es": {
         "a1": {
-            "1": "conoce o ha oído",
-            "2": "no conoce y no ha oído",
-            "Yes!": " conoce o ha oído",
-            "No!": " no conoce y no ha oído"
+            "1": "Si",
+            "2": "No"
         },
         "a3": {
-            "1": "totalmente implicado",
-            "2": "modestamente implicado",
-            "3": "ligeramente implicado",
-            "4": "para nada implicado"
+            "1": "Cómo te ves e identificas",
+            "2": "Como otres te ven e identifican",
+            "3": "Todo lo anterior",
+            "4": "Ninguna de las anteriores"
         },
+               
         "a2": {
             "1": "cómo te ves e identificas",
             "2": "como otres te ven e identifican",
             "3": "todo lo anterior",
             "4": "ninguna de las anteriores"
         },
-        "sugarIntake": {
-            "1": "alto",
-            "2": "medio",
-            "3": "bajo",
-            "4": "ninguno"
-        }
     }
 }
 
