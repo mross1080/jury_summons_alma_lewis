@@ -4,7 +4,7 @@ const redis = require('redis');
 const WebSocket = require('ws');
 
 const client = redis.createClient({
-  host: ' redis-15456.c62.us-east-1-4.ec2.cloud.redislabs.com',
+  host: 'redis-15456.c62.us-east-1-4.ec2.cloud.redislabs.com',
   port: '15456',
   password: 'TduKRzZYDhePnQvIb62w1lrZ6xLekzX6'
 });
