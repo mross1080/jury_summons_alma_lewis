@@ -99,9 +99,13 @@ areaSelect.addEventListener(`change`, (e) => {
       answer = document.getElementById("nationalitySelect").value
       console.log("Country ",answer)
 
-    }else {
+    } else if (stationName == "stationtwo") {
+      answer = document.getElementById("lastNameSelections").value
+      console.log("Names", answer)
+    } else {
       answer = document.forms[`answerForm${lang}`].elements["answerOption"].value
     }
+
 
 
     // var answer = document.getElementById("answer").value
