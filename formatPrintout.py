@@ -215,7 +215,7 @@ def formatDocument(userInfo):
             q1Answer = answer_lookup[lang]["a1"][userInfo["a1"]]
 
             if lang == "en":
-                paragraph.text = "For you, colonial history is [{}] to our present day.".format(q1Answer)
+                paragraph.text = "You [{}] know or have heard of the suspects and witnesses.".format(q1Answer)
             else:
                 q1Answer = answer_lookup[lang]["a1"][userInfo["a1"]]
                 paragraph.text = "Para usted, la historia colonial es [{}] para el presente.".format(q1Answer)
