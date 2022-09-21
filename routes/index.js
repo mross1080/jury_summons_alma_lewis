@@ -57,10 +57,10 @@ router.get('/stationthree', function (req, res, next) {
   res.render('stationthree', { title: 'Final Station', station: 'Welcome Station' });
 });
 
-router.get('/zipcode', function (req, res, next) {
+//router.get('/zipcode', function (req, res, next) {
 
-  res.render('zipcode', { title: 'Jurors Summons', station: 'Welcome Station' });
-});
+//  res.render('zipcode', { title: 'Jurors Summons', station: 'Welcome Station' });
+//});
 
 router.get('/print', function (req, res, next) {
 
@@ -68,10 +68,10 @@ router.get('/print', function (req, res, next) {
 });
 
 
-router.get('/sugarIntake', function (req, res, next) {
+//router.get('/sugarIntake', function (req, res, next) {
 
-  res.render('sugarIntake', { title: 'Jurors Summons', station: 'Welcome Station' });
-});
+//  res.render('sugarIntake', { title: 'Jurors Summons', station: 'Welcome Station' });
+//});
 
 
 router.get('/archivePermission', function (req, res, next) {
@@ -171,13 +171,13 @@ router.get('/stationthreeanswer', function (req, res, next) {
 });
 
 
-router.get('/sugarIntakeanswer', function (req, res, next) {
-  console.log("Sending data for station 3  ")
-  console.log(req.query)
+//router.get('/sugarIntakeanswer', function (req, res, next) {
+  //console.log("Sending data for station 3  ")
+ // console.log(req.query)
 
 
-  setAnswerForStation(res, "sugarIntake", req.query.fingerprintId, req.query.answer)
-});
+//  setAnswerForStation(res, "sugarIntake", req.query.fingerprintId, req.query.answer)
+//});
 
 router.get('/archivePermissionanswer', function (req, res, next) {
   console.log("Sending data for station 3  ")
@@ -188,12 +188,12 @@ router.get('/archivePermissionanswer', function (req, res, next) {
 });
 
 
-router.get('/zipcodeanswer', function (req, res, next) {
-  console.log("Got new user ")
-  console.log(req.query)
+//router.get('/zipcodeanswer', function (req, res, next) {
+ // console.log("Got new user ")
+//  console.log(req.query)
 
-  setAnswerForStation(res, "zipcode", req.query.fingerprintId, req.query.answer)
-});
+//  setAnswerForStation(res, "zipcode", req.query.fingerprintId, req.query.answer)
+//});
 
 
 router.get('/selectcountryanswer', function (req, res, next) {
