@@ -41,6 +41,17 @@ router.get('/station', function (req, res, next) {
   res.render('station', { title: 'Jurors Summons', station: 'Welcome Station' });
 });
 
+/* GET home page. */
+router.get('/banner', function (req, res, next) {
+  res.render('billboard_completion', {
+    title: 'Jurors Summons',
+     station: 'Welcome Station',
+    submit:"Submit",
+    namePlaceholder:"Your Name",
+    modalMessage:"Thank you for your answer. You may now proceed to the next station "
+   });
+});
+
 router.get('/stationone/', function (req, res, next) {
   console.log(req)
 
@@ -57,21 +68,12 @@ router.get('/stationthree', function (req, res, next) {
   res.render('stationthree', { title: 'Final Station', station: 'Welcome Station' });
 });
 
-//router.get('/zipcode', function (req, res, next) {
 
-//  res.render('zipcode', { title: 'Jurors Summons', station: 'Welcome Station' });
-//});
 
 router.get('/print', function (req, res, next) {
 
   res.render('print', { title: 'Jurors Summons', station: 'Welcome Station' });
 });
-
-
-//router.get('/sugarIntake', function (req, res, next) {
-
-//  res.render('sugarIntake', { title: 'Jurors Summons', station: 'Welcome Station' });
-//});
 
 
 router.get('/archivePermission', function (req, res, next) {

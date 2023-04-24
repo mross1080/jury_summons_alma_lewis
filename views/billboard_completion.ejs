@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/jquery.modal.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+</head>
+<script src="/javascripts/jquery.min.js">  </script>
+<script src="/javascripts/jquery.modal.min.js">  </script>
+
+<!-- jQuery Modal -->
+<script src="/javascripts/script.js">  </script>
+<script async src="/javascripts/fp.min.js" onload="initFingerprintJS()"></script>
+
+</script>
+<style>
+    div {
+      margin-bottom: 10px;
+    }
+    label {
+      display: inline-block;
+      width: 250px;
+      text-align: left;
+    }
+
+    input{
+        background-color: black;
+        background: black;
+        color: white;
+        border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+    }
+
+    .no-outline:focus {
+  outline: none;
+}
+  </style>
+<body>
+    <div class="App">
+
+        <div class="navBar">
+            <div class="langSelect">
+                <div class="lang"></div>
+                <div class="lang"></div>
+
+            </div>
+
+            <div class="centerVertical">
+                <img id="logoImg" src="/images/iirdicon.png" alt="Exhibit Icon" width="400" height="410">
+            </div>
+        </div>
+        <div class="questionContainer fadeInContent">
+            <div class="stationHeader">
+
+                <div class=" centerVertical">
+                    <p class="questionText">During the 1965 U.S.A. intervention in Santo Domingo a street banner read as follow:</p>                
+                </div>
+
+                <div class=" centerVertical">
+                    <p class="questionText">(Fill in the blanks)</p>
+                </div>
+            </div>
+
+            <div id="ex1" class="modal">
+              <div class="modalBody centerVertical">
+                  <p><%= modalMessage %></p>
+              </div>
+              
+          </div>
+
+          <div id="ex2" class="modal">
+            <div class="modalBody centerVertical">
+                <p>Please enter your name</p>
+                <p>Por favor entra tu nombre</p>
+            </div>
+            
+        </div>
+
+        <form action="/form/submit" method="post">
+            <div>
+              <label>United Against The</label>
+              <input type="text" />
+            </div>
+            <div>
+              <label>For The </label>
+              <input type="text" />
+            </div>
+            <div>
+              <label>For The </label>
+              <input type="text" />
+            </div>
+          </form>
+
+
+            <div onclick="registerUser()" class="submitAnswerButton">
+                <div class="centerVertical">
+                    <p class=" optionText" onclick="registerUser()" > <%= submit %> </p>
+                </div>
+                <div class="centerVertical">
+                    <img src="/images/arrow.png" alt="Exhibit Icon" width="70" height="70">
+                </div>
+
+            </div>  
+            <a id="nextStationLink" href="/archivePermission"></a>
+        </div>
+    </div>
+
+
+    </div>
+</body>
+
+</html>

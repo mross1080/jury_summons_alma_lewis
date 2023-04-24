@@ -99,7 +99,7 @@ select:-webkit-autofill:focus{
   height: 70vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
 
 }
 .stationHeader{
@@ -108,7 +108,8 @@ select:-webkit-autofill:focus{
   width: 80vw;
   margin-bottom: 20px;
   margin-top: 7vh;
-
+  flex-direction: column;
+  height: 22vh;
 }
 
 .questionText{
