@@ -13,7 +13,7 @@ const {
   Server
 } = require('ws');
 
-const wss = new Server({server: app,port:3001 });
+const wss = new Server({server: app });
 
 app.set("wss",wss)
 

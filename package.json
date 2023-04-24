@@ -2,8 +2,8 @@
   "name": "formserver",
   "version": "0.0.0",
   "engines": {
-    "node": "14.x",
-    "npm": "6.14.13"
+    "node": "*",
+    "npm": "*"
   },
   "private": true,
   
@@ -18,7 +18,6 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
-    "node-sass": "^5.0.0",
     "redis": "^3.0.2",
     "socket.io": "^4.0.0"
   }

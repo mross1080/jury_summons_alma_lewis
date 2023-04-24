@@ -55,8 +55,8 @@ function retrieveUserData() {
       // $("#ex2").modal({
       //   fadeDuration: 500
       // });
-      document.getElementById("nameEN").innerText = ` ${userData.userName}`
-      document.getElementById("nameES").innerText = ` ${userData.userName}`
+      // document.getElementById("nameEN").innerText = ` ${userData.userName}`
+      // document.getElementById("nameES").innerText = ` ${userData.userName}`
     }
 
    
@@ -76,8 +76,10 @@ function retrieveUserData() {
 }
 const log = console.log;
 const areaSelect = document.querySelector(`[id="nationalitySelect"]`);
+const a = document.querySelector(`[id="nationalitySelect"]`); 
 
-areaSelect.addEventListener(`change`, (e) => {
+
+a.addEventListener(`change`, (e) => {
   // log(`e.target`, e.target);
   const select = e.target;
   const value = select.value;
