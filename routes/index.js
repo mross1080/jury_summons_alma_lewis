@@ -249,8 +249,11 @@ let userInfo = {
   "a1": "1",
   "a2": "1",
   "a3": "1",
+  "united_against_the": "",
+  "for_the_1": "",
+  "for_the_2": "",
+  "know_the_witness": "no",
   "countryName": "Spain",
-  "sugarIntake":"1",
   "archivePermission":"1",
   "lang" : "en"
 }

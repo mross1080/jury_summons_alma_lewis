@@ -12,6 +12,10 @@ redis_conn = redis.Redis(  host= 'redis-15456.c62.us-east-1-4.ec2.cloud.redislab
   port= '15456',
   password= 'TduKRzZYDhePnQvIb62w1lrZ6xLekzX6',charset="utf-8", decode_responses=True)
 
+def save_archive(data):
+    for k, v in data.items():
+        print(k, v)
+
 
 def sub(name: str):
     print("subscribing")
@@ -20,13 +24,15 @@ def sub(name: str):
     for message in pubsub.listen():
         try:
             print(message)
-            if (type(message["data"]) == dict):
+            print(type(message["data"]))
+            if (type(message["data"]) == str):
                 data = json.loads(message["data"])
                 print("Recieved data" , data)
+                save_archive(data)
                 formatDocument(data)
             else:
                 print("Made Connection With Redis Pubsub")
-            # print("%s : %s" % (name, data))
+            # print("%s : %s" % (name,  data))
         except Exception as e:
             print("Got exception while trying to print ")
             print(e)
