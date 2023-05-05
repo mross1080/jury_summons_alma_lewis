@@ -102,7 +102,7 @@ a.addEventListener(`change`, (e) => {
       console.log("Country ",answer)
 
     } else if (stationName == "stationtwo") {
-      answer = document.getElementById("lastNameSelections").value
+      answer = document.getElementById("nationalitySelect").value
       console.log("Names", answer)
     } else {
       answer = document.forms[`answerForm${lang}`].elements["answerOption"].value
