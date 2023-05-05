@@ -32,7 +32,7 @@ answer_lookup = {
             "3": "Both", 
             "4": "None of the above"
         },
-        "a2": {
+        "last_names": {
             "0": "Anderson",
             "1": "Barret",
             "2": "Buck",

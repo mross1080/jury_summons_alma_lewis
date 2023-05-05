@@ -156,7 +156,14 @@ router.get('/stationtwoanswer', function (req, res, next) {
   console.log("Got new answer for station two  ")
   console.log(req.query)
 
-  setAnswerForStation(res, "a2", req.query.fingerprintId, req.query.answer)
+  setAnswerForStation(res, "related_to_or_know", req.query.fingerprintId, req.query.answer)
+});
+
+router.get('/banneranswer', function (req, res, next) {
+  console.log("Got new answer for station two  ")
+  console.log(req.query)
+
+  setAnswerForStation(res, "banner_completion", req.query.fingerprintId, req.query.answer)
 });
 
 
@@ -246,12 +253,9 @@ router.get('/printanswer', function (req, res, next) {
 let userInfo = {
   "userName": "1",
   "userId": "1",
-  "a1": "1",
-  "a2": "1",
+  "related_to_or_know": "1",
   "a3": "1",
-  "united_against_the": "",
-  "for_the_line_1": "",
-  "for_the_line_2": "",
+  "banner_completion": "",
   "know_the_witness": "no",
   "countryName": "Spain",
   "archivePermission":"1",

@@ -76,10 +76,8 @@ function retrieveUserData() {
 }
 const log = console.log;
 const areaSelect = document.querySelector(`[id="nationalitySelect"]`);
-const a = document.querySelector(`[id="nationalitySelect"]`); 
 
-
-a.addEventListener(`change`, (e) => {
+areaSelect.addEventListener(`change`, (e) => {
   // log(`e.target`, e.target);
   const select = e.target;
   const value = select.value;
@@ -103,6 +101,14 @@ a.addEventListener(`change`, (e) => {
 
     } else if (stationName == "stationtwo") {
       answer = document.getElementById("nationalitySelect").value
+      console.log("Names", answer)
+
+    } else if (stationName == "banner") {
+      line1 = document.getElementById("line1").value
+      line2 = document.getElementById("line2").value
+      line3 = document.getElementById("line3").value
+
+      answer = `${line1},${line2},${line3}`
       console.log("Names", answer)
     } else {
       answer = document.forms[`answerForm${lang}`].elements["answerOption"].value
