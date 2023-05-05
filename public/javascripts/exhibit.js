@@ -100,7 +100,7 @@ areaSelect.addEventListener(`change`, (e) => {
       console.log("Country ",answer)
 
     } else if (stationName == "stationtwo") {
-      answer = document.getElementById("nationalitySelect").value
+      answer = $('#nationalitySelect').val().join(",")
       console.log("Names", answer)
 
     } else if (stationName == "banner") {
