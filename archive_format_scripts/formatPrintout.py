@@ -23,9 +23,10 @@ count =0
 answer_lookup = {
     "en": {
         "know_the_witness": {
-            "1": "Yes",
-            "2": "No",
+            "1": "Have",
+            "2": "Have not",
         },
+        "banner_completion" : ["invader","sovereignty","constitution"],
         "a3": {
             "1": "How you see and identify yourself",
             "2": "How others see and identify you",
@@ -165,7 +166,7 @@ def score_answers(userInfo, country_score):
 def formatDocument(userInfo):
     print("Starting Custom Print Job")
     print(userInfo)
-    doc = Document("CivilResponsesEN.docx")
+    doc = Document("CivilResponseEN.docx")
     lang = userInfo["lang"]
     if userInfo["lang"] == "es":
         doc = Document("CivilResponsesES.docx")
@@ -211,44 +212,58 @@ def formatDocument(userInfo):
             if lang == "es":
                 paragraph.text = "Resultado : No Califica"
 
-        if '[Q1]' in paragraph.text:   
-            q1Answer = answer_lookup[lang]["know_the_witness"][userInfo["know_the_witness"]]
+        if '[Q1]' in paragraph.text:
+            print("Checking banner issues ")
+            banner_answers = userInfo["banner_completion"].split(",")
+            num_lines_correct = 0
+            for index, line in enumerate(banner_answers):
+                print(index, line)
+                print(answer_lookup[lang]["banner_completion"][index])
+                if line.lower() == answer_lookup[lang]["banner_completion"][index]:
+                    num_lines_correct+=1
+            #q1Answer = answer_lookup[lang]["banner_completion"][userInfo["banner_completion"]]
             # For testing
-            q1Answer = 1
+            q1Answer = num_lines_correct
             if lang == "en":
-                paragraph.text = "You [{}] know or have heard of the suspects and witnesses.".format(q1Answer)
+                paragraph.text = "You answer [{}] words correctly from the 1965 banner.".format(q1Answer)
             else:
                 q1Answer = answer_lookup[lang]["know_the_witness"][userInfo["know_the_witness"]]
-                paragraph.text = "Para usted, la historia colonial es [{}] para el presente.".format(q1Answer)
+                paragraph.text = "Usted respondió [{}] palabras correctas en la pancarta del 1965.".format(q1Answer)
+
+            if num_lines_correct == 3:
+                num_correct+=1
 
         if '[Q2]' in paragraph.text:
-            questionTwoAnswer = answer_lookup[lang]["last_names"][userInfo["last_names"]]
-            paragraph.text = "You are [{}] to a person who is stateless.".format(questionTwoAnswer)
+            print("Know the witness ", userInfo["know_the_witness"])
+            questionTwoAnswer = answer_lookup[lang]["know_the_witness"][userInfo["know_the_witness"]]
+            print(userInfo["know_the_witness"], answer_lookup[lang]["know_the_witness"][userInfo["know_the_witness"]])
+            paragraph.text = "You [{}] know or have heard of the suspects and witnesses.".format(questionTwoAnswer)
   
             if lang == "es":
-                paragraph.text = "Usted es [{}] a una persona apátrida.".format(questionTwoAnswer)
+                paragraph.text = "Usted [{}] los testigos o los sospechosos..".format(questionTwoAnswer)
+            
+            if userInfo["know_the_witness"] == "1":
+                num_correct+=1
 
         if '[Q3]' in paragraph.text:
-            questionThreeAnswer = answer_lookup[lang]["a3"][userInfo["a3"]]
-            questionThreeAnswer = "are not"
+            if userInfo["related_to_or_know"] != "":
+                questionThreeAnswer = "are"
+            else:
+                questionThreeAnswer = "are not"
+            #questionThreeAnswer = answer_lookup[lang]["a3"][userInfo["a3"]]
+            #questionThreeAnswer = "are not"
             print("paragraph text", paragraph.text)
-            paragraph.text = "You [{}] that the nation-state is a violent institution.".format(questionThreeAnswer)
+            paragraph.text = "You [{}] related or know a descendent of an immigrant from the 1824 migration from the United States to Haiti/Dominican Republic.".format(questionThreeAnswer)
             if lang == "es":
-                paragraph.text = "Usted está [{}] que el estado-nación es una institución violenta.".format(questionThreeAnswer)
+                paragraph.text = "Usted [{}] ser un familiar o conoce a un descendiente de inmigrante de la migración de 1824 de los Estados Unidos a Haití/República Dominicana.".format(questionThreeAnswer)
 
-        # if '[Q3 answer]' in paragraph.text:
-        #     questionFourAnswer = answer_lookup[lang]["sugarIntake"][userInfo["sugarIntake"]]
-        #     paragraph.text = "Your weekly sugar intake is [{}].  To be an impartial reviewer would not consume any sugar.".format(
-        #         answer_lookup[lang]["sugarIntake"][userInfo["sugarIntake"]])
-        #     if lang == "es":
-        #         paragraph.text = "Su consumo semanal de azúcar es [Q3 answer].".format(questionFourAnswer)
 
         if '[ANSWER]' in paragraph.text:
             paragraph.style = 'Insertion'
 
-            paragraph.text = "Your [{}] nationality ranks {}% in the Quality of Nationality index".format(country_name,country_score)
+            paragraph.text = "[{}] citizenship ranks {}% in the Quality of Nationality index*.".format(country_name,country_score)
             if lang == "es":
-                paragraph.text = "Su nacionalidad [{}] tiene un índice de {}% en el índice de calidad de la nacionalidad".format(country_name,country_score)
+                paragraph.text = "La ciudadanía de [{}] tiene un índice de {}% en el índice de calidad de la nacionalidad*".format(country_name,country_score)
 
 
         if '[X out of 4]' in paragraph.text or '[X de 4]' in paragraph.text:
@@ -276,15 +291,13 @@ def formatDocument(userInfo):
 if __name__ == "__main__":
     try:
         formatDocument({
-  "userName": "Bob Universe",
+  "userName": "haeha",
   "userId": "1",
-  "know_the_witness": "1",
+  "know_the_witness": "2",
   "last_names": "1",
   "a3": "1",
-  "united_against_the": "country",
-  "for_the_line_1": "people",
-  "for_the_line_2": "state",
-  "know_the_witness": "1",
+  "related_to_or_know": "1",
+    "banner_completion" : "invader,sovereignty,constitution",
   "countryName": "4",
   "archivePermission":"1",
   "lang" : "en"
