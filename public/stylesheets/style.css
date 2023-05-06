@@ -96,7 +96,7 @@ select:-webkit-autofill:focus{
 }
 
 .questionContainer{
-  height: 70vh;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -109,7 +109,16 @@ select:-webkit-autofill:focus{
   margin-bottom: 20px;
   margin-top: 7vh;
   flex-direction: column;
-  height: 22vh;
+  height: 12vh;
+}
+
+.billboardStationHeader{
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+  margin-bottom: 20px;
+  flex-direction: column;
+  height: 26vh;
 }
 
 .questionText{
