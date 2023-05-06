@@ -284,7 +284,7 @@ def formatDocument(userInfo):
     subprocess.run(["libreoffice", "--headless", "--convert-to",
                    "pdf", "{}.docx".format(userInfo["userName"])])
     subprocess.run(
-        ["lp", "-d", "myprinter", "{}.pdf".format(userInfo["userName"])])
+        ["lp", "-d", "epson_2023", "{}.pdf".format(userInfo["userName"])])
     print("Completed Format Of Document")
 
 
