@@ -8,7 +8,7 @@ import random
 
 
 def testPrint():
-    print("Connected to formatter")
+    print("Connected to formatter ")
 
 correct_answers = {
     "know_the_witness" : "2",
