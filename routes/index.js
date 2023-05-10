@@ -149,7 +149,7 @@ router.get('/stationoneanswer', function (req, res, next) {
   console.log("Got answer at station 1  ")
   console.log(req.query)
 
-  setAnswerForStation(res, "a1", req.query.fingerprintId, req.query.answer)
+  setAnswerForStation(res, "know_the_witness", req.query.fingerprintId, req.query.answer)
 });
 
 router.get('/stationtwoanswer', function (req, res, next) {
