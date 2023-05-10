@@ -97,7 +97,6 @@ areaSelect.addEventListener(`change`, (e) => {
     } else if (stationName=="selectcountry") {
 
       answer = document.getElementById("nationalitySelect").value
-      alert(answer)
       console.log("Country ",answer)
 
     } else if (stationName == "stationtwo") {
