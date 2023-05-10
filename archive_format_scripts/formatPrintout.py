@@ -12,7 +12,7 @@ def testPrint():
 
 correct_answers = {
     "know_the_witness" : "2",
-    "last_names" : "37",
+    "related_to_or_know" : "37",
     "a3" : "2"
 }
 
@@ -151,6 +151,7 @@ with open('country_json_data.json', 'r') as myfile:
 country_index_score = json.loads(data)
 
 def score_answers(userInfo, country_score):
+    print("Scoring asnwers ")
     number_correct = 0
     for answer in correct_answers:
         print(answer, userInfo[answer])
@@ -165,142 +166,136 @@ def score_answers(userInfo, country_score):
 
 def formatDocument(userInfo):
     print("Starting Custom Print Job")
-    print(userInfo)
-    doc = Document("CivilResponseEN.docx")
-    lang = userInfo["lang"]
-    if userInfo["lang"] == "es":
-        doc = Document("CivilResponsesES.docx")
+    print("Incoming data to format print with " , userInfo)
+    try: 
+        doc = Document("CivilResponseEN.docx")
+        lang = userInfo["lang"]
+        if userInfo["lang"] == "es":
+            doc = Document("CivilResponsesES.docx")
+
+        print("Extrapolating Country name from value") 
+        country_name = country_index_score[userInfo["countryName"]]["country_name"]
+        print("Country name is ", country_name)
+        country_score = float(country_index_score[userInfo["countryName"]]["score"])
+
+        print(country_name, country_score)
+
+        styles = doc.styles
+        style = styles.add_style('Insertion', WD_STYLE_TYPE.PARAGRAPH)
+        style = doc.styles['Insertion']
+        font = style.font
+        font.name = 'Helvetica'
+        font.size = Pt(18)
 
 
-    country_name = country_index_score[userInfo["countryName"]]["country_name"]
-    country_score = float(country_index_score[userInfo["countryName"]]["score"])
-
-    print(country_name, country_score)
-
-    styles = doc.styles
-    style = styles.add_style('Insertion', WD_STYLE_TYPE.PARAGRAPH)
-    style = doc.styles['Insertion']
-    font = style.font
-    font.name = 'Helvetica'
-    font.size = Pt(18)
+        num_correct = score_answers(userInfo, country_score)
+        qualify_status = "QUALIFY"  if num_correct == 5  else "DISQUALIFY"
+        print("QUALIFY : " , qualify_status)
+        print("NUM CORRECT ", num_correct)
 
 
-    num_correct = score_answers(userInfo, country_score)
-    qualify_status = "QUALIFY"  if num_correct == 5  else "DISQUALIFY"
-    print("QUALIFY : " , qualify_status)
-    print("NUM CORRECT ", num_correct)
+        print("Creating Document using this info")
+        print(userInfo)
+        for paragraph in doc.paragraphs:
+            # print(paragraph.text)
+
+            if '[DATE]' in paragraph.text:
+                paragraph.style = 'Insertion'
+                paragraph.text =f"{datetime.datetime.now():%m-%d-%Y}" 
+
+            if '[NAME]' in paragraph.text:
+                paragraph.style = 'Insertion'
+                paragraph.text = 'Applicant: {}'.format(userInfo["userName"])
+                if lang == "es":
+                    paragraph.text = 'Solicitante: {}'.format(userInfo["userName"])
+
+            if '[QUALIFYSTATUS]' in paragraph.text:
+                paragraph.style = 'Insertion'
+                paragraph.text = 'Result : {}'.format(qualify_status)
+                if lang == "es":
+                    paragraph.text = "Resultado : No Califica"
+
+            if '[Q1]' in paragraph.text:
+                print("Checking banner issues ")
+                banner_answers = userInfo["banner_completion"].split(",")
+                num_lines_correct = 0
+                for index, line in enumerate(banner_answers):
+                    print(index, line)
+                    print(answer_lookup[lang]["banner_completion"][index])
+                    if line.lower() == answer_lookup[lang]["banner_completion"][index]:
+                        num_lines_correct+=1
+                #q1Answer = answer_lookup[lang]["banner_completion"][userInfo["banner_completion"]]
+                # For testing
+                q1Answer = num_lines_correct
+                if lang == "en":
+                    paragraph.text = "You answer [{}] words correctly from the 1965 banner.".format(q1Answer)
+                else:
+                    q1Answer = answer_lookup[lang]["know_the_witness"][userInfo["know_the_witness"]]
+                    paragraph.text = "Usted respondió [{}] palabras correctas en la pancarta del 1965.".format(q1Answer)
+
+                if num_lines_correct == 3:
+                    num_correct+=1
+
+            if '[Q2]' in paragraph.text:
+                print("Know the witness ", userInfo["know_the_witness"])
+                questionTwoAnswer = answer_lookup[lang]["know_the_witness"][userInfo["know_the_witness"]]
+                print(userInfo["know_the_witness"], answer_lookup[lang]["know_the_witness"][userInfo["know_the_witness"]])
+                paragraph.text = "You [{}] know or have heard of the suspects and witnesses.".format(questionTwoAnswer)
+    
+                if lang == "es":
+                    paragraph.text = "Usted [{}] los testigos o los sospechosos..".format(questionTwoAnswer)
+                
+                if userInfo["know_the_witness"] == "1":
+                    num_correct+=1
+
+            if '[Q3]' in paragraph.text:
+
+                if userInfo["related_to_or_know"] != "":
+                    questionThreeAnswer = "are"
+                else:
+                    questionThreeAnswer = "are not"
+                #questionThreeAnswer = answer_lookup[lang]["a3"][userInfo["a3"]]
+                #questionThreeAnswer = "are not"
+                print("paragraph text", paragraph.text)
+                paragraph.text = "You [{}] related or know a descendent of an immigrant from the 1824 migration from the United States to Haiti/Dominican Republic.".format(questionThreeAnswer)
+                if lang == "es":
+                    paragraph.text = "Usted [{}] ser un familiar o conoce a un descendiente de inmigrante de la migración de 1824 de los Estados Unidos a Haití/República Dominicana.".format(questionThreeAnswer)
 
 
-    print("Creating Document using this info")
-    print(userInfo)
-    for paragraph in doc.paragraphs:
-        # print(paragraph.text)
+            if '[ANSWER]' in paragraph.text:
+                paragraph.style = 'Insertion'
 
-        if '[DATE]' in paragraph.text:
-            paragraph.style = 'Insertion'
-            paragraph.text =f"{datetime.datetime.now():%m-%d-%Y}" 
-
-        if '[NAME]' in paragraph.text:
-            paragraph.style = 'Insertion'
-            paragraph.text = 'Applicant: {}'.format(userInfo["userName"])
-            if lang == "es":
-                paragraph.text = 'Solicitante: {}'.format(userInfo["userName"])
-
-        if '[QUALIFYSTATUS]' in paragraph.text:
-            paragraph.style = 'Insertion'
-            paragraph.text = 'Result : {}'.format(qualify_status)
-            if lang == "es":
-                paragraph.text = "Resultado : No Califica"
-
-        if '[Q1]' in paragraph.text:
-            print("Checking banner issues ")
-            banner_answers = userInfo["banner_completion"].split(",")
-            num_lines_correct = 0
-            for index, line in enumerate(banner_answers):
-                print(index, line)
-                print(answer_lookup[lang]["banner_completion"][index])
-                if line.lower() == answer_lookup[lang]["banner_completion"][index]:
-                    num_lines_correct+=1
-            #q1Answer = answer_lookup[lang]["banner_completion"][userInfo["banner_completion"]]
-            # For testing
-            q1Answer = num_lines_correct
-            if lang == "en":
-                paragraph.text = "You answer [{}] words correctly from the 1965 banner.".format(q1Answer)
-            else:
-                q1Answer = answer_lookup[lang]["know_the_witness"][userInfo["know_the_witness"]]
-                paragraph.text = "Usted respondió [{}] palabras correctas en la pancarta del 1965.".format(q1Answer)
-
-            if num_lines_correct == 3:
-                num_correct+=1
-
-        if '[Q2]' in paragraph.text:
-            print("Know the witness ", userInfo["know_the_witness"])
-            questionTwoAnswer = answer_lookup[lang]["know_the_witness"][userInfo["know_the_witness"]]
-            print(userInfo["know_the_witness"], answer_lookup[lang]["know_the_witness"][userInfo["know_the_witness"]])
-            paragraph.text = "You [{}] know or have heard of the suspects and witnesses.".format(questionTwoAnswer)
-  
-            if lang == "es":
-                paragraph.text = "Usted [{}] los testigos o los sospechosos..".format(questionTwoAnswer)
-            
-            if userInfo["know_the_witness"] == "1":
-                num_correct+=1
-
-        if '[Q3]' in paragraph.text:
-            if userInfo["related_to_or_know"] != "":
-                questionThreeAnswer = "are"
-            else:
-                questionThreeAnswer = "are not"
-            #questionThreeAnswer = answer_lookup[lang]["a3"][userInfo["a3"]]
-            #questionThreeAnswer = "are not"
-            print("paragraph text", paragraph.text)
-            paragraph.text = "You [{}] related or know a descendent of an immigrant from the 1824 migration from the United States to Haiti/Dominican Republic.".format(questionThreeAnswer)
-            if lang == "es":
-                paragraph.text = "Usted [{}] ser un familiar o conoce a un descendiente de inmigrante de la migración de 1824 de los Estados Unidos a Haití/República Dominicana.".format(questionThreeAnswer)
+                paragraph.text = "[{}] citizenship ranks {}% in the Quality of Nationality index*.".format(country_name,country_score)
+                if lang == "es":
+                    paragraph.text = "La ciudadanía de [{}] tiene un índice de {}% en el índice de calidad de la nacionalidad*".format(country_name,country_score)
 
 
-        if '[ANSWER]' in paragraph.text:
-            paragraph.style = 'Insertion'
+            if '[X out of 4]' in paragraph.text or '[X de 4]' in paragraph.text:
+                print("Setting Random Value 1")
+                paragraph.style = 'Insertion'
 
-            paragraph.text = "[{}] citizenship ranks {}% in the Quality of Nationality index*.".format(country_name,country_score)
-            if lang == "es":
-                paragraph.text = "La ciudadanía de [{}] tiene un índice de {}% en el índice de calidad de la nacionalidad*".format(country_name,country_score)
-
-
-        if '[X out of 4]' in paragraph.text or '[X de 4]' in paragraph.text:
-            print("Setting Random Value 1")
-            paragraph.style = 'Insertion'
-
-            paragraph.text = "You answered [{} out of 4] questions correctly. To be an impartial reviewer you would have to answer all the questions correctly.".format(num_correct)
-            if lang == "es":
-                paragraph.text = "Usted obtuvo [{} de 4] correctas. Para ser un evaluador imparcial debe responder correctamente todas las preguntas.".format(num_correct)
+                paragraph.text = "You answered [{} out of 4] questions correctly. To be an impartial reviewer you would have to answer all the questions correctly.".format(num_correct)
+                if lang == "es":
+                    paragraph.text = "Usted obtuvo [{} de 4] correctas. Para ser un evaluador imparcial debe responder correctamente todas las preguntas.".format(num_correct)
 
 
 
 
 
-    doc_name = '{}.docx'.format(userInfo["userName"])
-    doc.save(doc_name)
-    print("Formatted And Saved Document with name {}".format(doc_name))
-    subprocess.run(["libreoffice", "--headless", "--convert-to",
-                   "pdf", "{}.docx".format(userInfo["userName"])])
-    subprocess.run(
-        ["lp", "-d", "epson_2023", "{}.pdf".format(userInfo["userName"])])
-    print("Completed Format Of Document")
+        doc_name = '{}.docx'.format(userInfo["userName"])
+        doc.save(doc_name)
+        print("Formatted And Saved Document with name {}".format(doc_name))
+        subprocess.run(["libreoffice", "--headless", "--convert-to",
+                    "pdf", "{}.docx".format(userInfo["userName"])])
+        subprocess.run(
+            ["lp", "-d", "epson_2023", "{}.pdf".format(userInfo["userName"])])
+        print("Completed Format Of Document")
+    except Exception as e:
+        print("Encountered Error In Printout ", e)
 
 
 if __name__ == "__main__":
     try:
-        formatDocument({
-  "userName": "haeha",
-  "userId": "1",
-  "know_the_witness": "2",
-  "last_names": "1",
-  "a3": "1",
-  "related_to_or_know": "1",
-    "banner_completion" : "invader,sovereignty,constitution",
-  "countryName": "4",
-  "archivePermission":"1",
-  "lang" : "en"
-})
+        formatDocument({'userName': 'bar', 'userId': '8dfb74f85758a53ae9bb142a8493a341', 'related_to_or_know': '1', 'a3': '1', 'banner_completion': '', 'know_the_witness': '2', 'countryName': '33', 'archivePermission': '1', 'lang': 'en'} )
     except Exception as e:
         print(e)

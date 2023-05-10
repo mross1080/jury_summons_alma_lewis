@@ -253,10 +253,10 @@ router.get('/printanswer', function (req, res, next) {
 let userInfo = {
   "userName": "1",
   "userId": "1",
-  "related_to_or_know": "1",
+  "related_to_or_know": "",
   "a3": "1",
   "banner_completion": "",
-  "know_the_witness": "no",
+  "know_the_witness": "2",
   "countryName": "33",
   "archivePermission":"1",
   "lang" : "en"

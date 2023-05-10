@@ -122,19 +122,23 @@ answer_lookup = {
 country_index_score = json.loads(data)
 
 def archive_answer(data):
-    print("Starting Archive Process ")
-    print("Archive Answer : ".format(data))
     try:
-        data["countryName"] = country_index_score[data["countryName"]]["country_name"]
+        print("Starting Archive Process ")
+        print("Archive Answer : ".format(data))
+        archive_data = data
+        try:
+            archive_data["countryName"] = country_index_score[archive_data["countryName"]]["country_name"]
+        except Exception as e:
+            print(e)
+        new_row = table.create({"name":archive_data["userName"]})
+        for k, v in archive_data.items():
+            # print(k, v)
+            # print(new_row)
+            if k not in EXCLUDED_KEYS:
+                table.update(new_row["id"], {k: v})
+        print("Completed Archival Process")
     except Exception as e:
-        print(e)
-    new_row = table.create({"name":data["userName"]})
-    for k, v in data.items():
-        # print(k, v)
-        # print(new_row)
-        if k not in EXCLUDED_KEYS:
-            table.update(new_row["id"], {k: v})
-    print("Completed Archival Process")
+        print("Encountered Error while archving ", e)
 
 
 

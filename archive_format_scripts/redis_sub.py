@@ -28,9 +28,12 @@ def sub(name: str):
             print(type(message["data"]))
             if (type(message["data"]) == str):
                 data = json.loads(message["data"])
+                data_for_print = data
+                print("Data for print ", data_for_print)
+                formatDocument(data_for_print)
                 print("Recieved data" , data)
                 archive_answer(data)
-                formatDocument(data)
+
             else:
                 print("Made Connection With Redis Pubsub")
             # print("%s : %s" % (name,  data))
