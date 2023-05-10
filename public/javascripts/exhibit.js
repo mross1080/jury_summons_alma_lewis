@@ -39,14 +39,20 @@ function retrieveUserData() {
         $(".lang").hide()
       } else {
 
-      
+
 
       if (userData.lang === "en") {
+        if (document.title == "print") {
+          document.getElementById("nameEN").textContent = userData.userName
+        }
         $(".esContent").hide()
         $("#langEn").css("border-bottom","3px solid white")
 
       } else {
         lang = "es"
+        if (document.title == "print") {
+          document.getElementById("nameES").textContent = userData.userName
+        }
         $(".enContent").hide()
         $("#langEs").css("border-bottom","3px solid white")
 

@@ -1,3 +1,5 @@
 node_modules
 *.docx
 *.pyc
+*.pdf
+*.log
