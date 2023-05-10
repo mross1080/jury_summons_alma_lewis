@@ -23,8 +23,8 @@ count =0
 answer_lookup = {
     "en": {
         "know_the_witness": {
-            "1": "Have",
-            "2": "Have not",
+            "1": "do",
+            "2": "do not",
         },
         "banner_completion" : ["invader","sovereignty","constitution"],
         "a3": {
@@ -76,9 +76,10 @@ answer_lookup = {
     },
     "es": {
         "know_the_witness": {
-            "1": "Si",
-            "2": "No"
+            "1": "do",
+            "2": "do not",
         },
+        "banner_completion" : ["invasor","soverania","constitución"],
         "a3": {
             "1": "Cómo te ves e identificas",
             "2": "Como otres te ven e identifican",
@@ -239,10 +240,7 @@ def formatDocument(userInfo):
             if '[Q2]' in paragraph.text:
                 print("Know the witness ", userInfo["know_the_witness"])
                 questionTwoAnswer = answer_lookup[lang]["know_the_witness"][userInfo["know_the_witness"]]
-                if userInfo["know_the_witness"] == "1":
-                    questionTwoAnswer = "do"
-                else:
-                    questionTwoAnswer = "do not"
+
                 print(userInfo["know_the_witness"], answer_lookup[lang]["know_the_witness"][userInfo["know_the_witness"]])
                 paragraph.text = "You [{}] know or have heard of the suspects and witnesses.".format(questionTwoAnswer)
     
@@ -301,6 +299,6 @@ def formatDocument(userInfo):
 if __name__ == "__main__":
     try:
         # formatDocument({'userName': 'bar', 'userId': '8dfb74f85758a53ae9bb142a8493a341', 'related_to_or_know': '1', 'a3': '1', 'banner_completion': '', 'know_the_witness': '2', 'countryName': '33', 'archivePermission': '1', 'lang': 'en'} )
-        formatDocument({'userName': 'aLizania cruz', 'userId': 'b9961849347705fd62b8c00dba1e843c', 'related_to_or_know': '2', 'a3': '1', 'banner_completion': 'Joke,Joke,Joke', 'know_the_witness': '2', 'countryName': '7', 'archivePermission': '1', 'lang': 'en', 'a1': '2'})
+        formatDocument({'userName': 'steve cruze', 'userId': 'b9961849347705fd62b8c00dba1e843c', 'related_to_or_know': '2', 'a3': '1', 'banner_completion': 'Joke,Joke,Joke', 'know_the_witness': '2', 'countryName': '7', 'archivePermission': '1', 'lang': 'es', 'a1': '2'})
     except Exception as e:
         print(e)
