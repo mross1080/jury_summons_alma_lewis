@@ -112,6 +112,16 @@ select:-webkit-autofill:focus{
   height: 12vh;
 }
 
+.selectCountryStationHeader{
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+
+  margin-top: 7vh;
+  flex-direction: column;
+
+}
+
 .billboardStationHeader{
   display: flex;
   justify-content: space-between;
